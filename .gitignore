@@ -1,0 +1,23 @@
+# Node modules
+/backend/node_modules/
+/backend/qz-sign/node_modules/
+/frontend/node_modules/
+
+# Environment files
+
+/backend/uploads/
+
+
+# Build output (optional, depending on your setup)
+/frontend/build/
+/backend/dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-related
+.DS_Store
+Thumbs.db
