@@ -18,7 +18,9 @@ const generateToken = (id) => {
 // --------------------------------------------------------------------
 const registerUser = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
-
+  console.log("backend");
+  console.log(username);
+  console.log(password);
   if (!username || !password) {
     return res.status(400).json({ message: "Please fill all required fields" });
   }
@@ -59,7 +61,7 @@ const registerUser = asyncHandler(async (req, res) => {
 // --------------------------------------------------------------------
 const loginUser = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
-   console.log(username, "  ", password)
+  console.log("credentials:", username, "  ", password);
   if (!username || !password) {
     return res.status(400).json({ message: "Please add username & password" });
   }
@@ -68,8 +70,11 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!user)
     return res.status(400).json({ message: "User not found, please sign up" });
-  console.log(password);
+
+  console.log(user.username);
   console.log(user.password);
+  console.log(password);
+
   const passwordIsCorrect = await bcrypt.compare(password, user.password);
 
   if (passwordIsCorrect) {
