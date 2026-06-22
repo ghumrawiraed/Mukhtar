@@ -13,6 +13,7 @@ const fs = require("fs");
 const app = express();
 
 const listRoutes = require("./routes/listRoutes");
+const userRoutes = require("./routes/userRoutes");
 // Middlewares
 
 app.use(cookieParser());
@@ -25,9 +26,9 @@ app.use("/templates", express.static("templates"));
 //Error Middleware
 app.use(errorHandler);
 
-// Routes Middleware
-//app.use("/api/reports", reportRoutes);
+
 app.use("/api/list", listRoutes);
+app.use("/api/users", userRoutes);
 
 const PORT = process.env.PORT || 5000;
 
@@ -36,6 +37,15 @@ const backupDir = path.join(__dirname, "backups");
 if (!fs.existsSync(backupDir)) {
   fs.mkdirSync(backupDir, { recursive: true });
 }
+
+  app.get("/", (req, res) => {
+  res.send("Server is running");
+});
+
+app.get("/test", (req, res) => {
+  res.send("Test OK");
+});
+
 sequelize
   .authenticate()
 
@@ -53,3 +63,4 @@ sequelize
   .catch((err) => {
     console.error("MySQL Connection Error:", err);
   });
+

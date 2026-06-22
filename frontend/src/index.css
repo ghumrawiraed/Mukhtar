@@ -51,11 +51,9 @@
   }
 }
 
-body {
-  margin: 0;
-}
 
-#root {
+
+body, html,#root {
   width: 1126px;
   max-width: 100%;
   margin: 0 auto;
@@ -65,6 +63,13 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  overflow: hidden !important;
 }
 
 h1,
