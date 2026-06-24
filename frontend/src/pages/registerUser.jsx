@@ -31,17 +31,12 @@ const RegisterUser = () => {
     }
   };
 
-  return (
-    <>
-      <h2
-        className="    text-2xl font-bold text-gray-900 dark:text-white
-                            mb-8 text-right
-                            px-6 sm:px-8 py-3
-                            -mx-6 sm:-mx-8
-                            -mt-6 sm:-mt-8
-                            dark:bg-slate-700
-                            rounded-t-2xl"
-      >
+  return ( 
+  <div className="w-full bg-white/50 rounded-lg shadow  md:mt-0 sm:max-w-lg xl:p-0 dark:bg-gray-800/50 dark:border-gray-700">
+    
+    <div className="w-full bg-white/10 border border-white/20 rounded-2xl p-8 shadow-2xl text-white backdrop-blur-lg" dir="rtl">
+      <h2 className="text-xl font-bold text-center mb-6">
+       
         تسجيل مستخدم جديد
       </h2>
 
@@ -96,7 +91,7 @@ const RegisterUser = () => {
                 message: "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
               },
             })}
-            className={`w-full px-4 py-2 rounded-lg border bg-white/50 dark:bg-gray-900/50 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-600 transition ${
+            className={`w-full px-4 py-2 rounded-lg border  text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-600 transition ${
               errors.password
                 ? "border-red-500 focus:ring-red-500"
                 : "border-gray-300 dark:border-gray-700"
@@ -129,7 +124,8 @@ const RegisterUser = () => {
           </button>
         </div>
       </form>
-    </>
+   </div>
+   </div>
   );
 };
 
