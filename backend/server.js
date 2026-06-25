@@ -14,6 +14,8 @@ const app = express();
 
 const listRoutes = require("./routes/listRoutes");
 const userRoutes = require("./routes/userRoutes");
+const reportRoutes = require("./routes/reportRoutes");
+
 // Middlewares
 
 app.use(cookieParser());
