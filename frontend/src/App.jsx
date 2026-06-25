@@ -3,6 +3,9 @@ import Layout from "./components/layout/layout";
 import Login from "./pages/login";
 import RegisterUser from "./pages/registerUser";
 import IfadetSakanList from "./pages/IfadetSakan/ifadetSakanList";
+import ResidentList from "./pages/residents/residentList";
+import AddResident from "./pages/residents/addResident";
+import EditResident from "./pages/residents/editResident";
 
 
 import { ToastContainer } from "react-toastify";
@@ -16,6 +19,9 @@ function App() {
           <Route path="/login" element={<Login/>} />                           
           <Route path="/register" element={<RegisterUser />} />         
           <Route path="/ifadet-sakan" element={<IfadetSakanList />} />  
+          <Route path="/resident/list" element={<ResidentList />} />   
+          <Route path="/resident/new" element={<AddResident/>} />  
+           <Route path="/resident/:id" element={<EditResident/>} />  
 
       </Route>   
       </Routes> 

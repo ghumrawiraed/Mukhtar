@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "list",
+    "resident",
     {
       ID: {
         autoIncrement: true,
@@ -142,7 +142,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     {
       sequelize,
-      tableName: "list",
+      tableName: "resident",
       timestamps: false,
     },
   );

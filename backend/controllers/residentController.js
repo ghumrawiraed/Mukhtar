@@ -1,24 +1,24 @@
 const { sequelize, models } = require("../config/db");
-const { list } = models;
+const { resident } = models;
 const asyncHandler = require("express-async-handler");
 
-const addList = asyncHandler(async (req, res) => {
+const addResident = asyncHandler(async (req, res) => {
   console.log(req.body);
-  const listData = req.body;
+  const residentData = req.body;
 
-  // Create List
-  const newList = await list.create(listData);
+  // Create Resident
+  const newResident = await resident.create(residentData);
 
   res.status(201).json({
-    message: "List saved",
-    data: newList,
+    message: "Resident saved",
+    data: newResident,
   });
 });
 
 //--------------------------------------
 // GET ALL (with pagination & relations)
 //--------------------------------------
-const getAllList = async (req, res) => {
+const getAllResident = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 5000;
@@ -30,13 +30,13 @@ const getAllList = async (req, res) => {
       ? JSON.parse(req.query.sort)
       : [["id", "DESC"]];
 
-    const include = list.associations
-      ? Object.values(list.associations).map((assoc) => ({
+    const include = resident.associations
+      ? Object.values(resident.associations).map((assoc) => ({
           association: assoc,
         }))
       : [];
 
-    const { count, rows } = await list.findAndCountAll({
+    const { count, rows } = await resident.findAndCountAll({
       where,
       include,
       limit,
@@ -55,8 +55,8 @@ const getAllList = async (req, res) => {
   }
 };
 
-const getOneList = asyncHandler(async (req, res) => {
-  const item = await list.findByPk(req.params.id);
+const getOneResident = asyncHandler(async (req, res) => {
+  const item = await resident.findByPk(req.params.id);
 
   if (!item) {
     res.status(404);
@@ -66,8 +66,8 @@ const getOneList = asyncHandler(async (req, res) => {
   res.json(item);
 });
 
-const getListByRecordNo = asyncHandler(async (req, res) => {
-  const item = await list.findAndCountAll({
+const getResidentByRecordNo = asyncHandler(async (req, res) => {
+  const item = await resident.findAndCountAll({
     where: {
       record_no: req.params.recordNo,
     },
@@ -81,8 +81,8 @@ const getListByRecordNo = asyncHandler(async (req, res) => {
   res.json(item);
 });
 
-const removeList = asyncHandler(async (req, res) => {
-  const item = await list.findByPk(req.params.id);
+const removeResident = asyncHandler(async (req, res) => {
+  const item = await resident.findByPk(req.params.id);
 
   if (!item) {
     res.status(404);
@@ -94,27 +94,27 @@ const removeList = asyncHandler(async (req, res) => {
   res.json({ message: "Deleted successfully" });
 });
 
-const updateList = asyncHandler(async (req, res) => {
-  const { ListData } = req.body;
-  const listId = req.params.id;
+const updateResident = asyncHandler(async (req, res) => {
+  const { ResidentData } = req.body;
+  const residentId = req.params.id;
 
-  const item = await List.findByPk(listId);
+  const item = await Resident.findByPk(residentId);
 
   if (!item) {
     res.status(404);
     throw new Error("Not found");
   }
 
-  await item.update(ListData);
+  await item.update(ResidentData);
 
-  res.json({ message: "List updated successfully" });
+  res.json({ message: "Resident updated successfully" });
 });
 
 module.exports = {
-  addList,
-  getOneList,
-  getAllList,
-  updateList,
-  removeList,
-  getListByRecordNo,
+  addResident,
+  getOneResident,
+  getAllResident,
+  updateResident,
+  removeResident,
+  getResidentByRecordNo,
 };

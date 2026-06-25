@@ -12,7 +12,7 @@ const fs = require("fs");
 
 const app = express();
 
-const listRoutes = require("./routes/listRoutes");
+const residentRoutes = require("./routes/residentRoutes");
 const userRoutes = require("./routes/userRoutes");
 const reportRoutes = require("./routes/reportRoutes");
 
@@ -29,7 +29,8 @@ app.use("/templates", express.static("templates"));
 app.use(errorHandler);
 
 
-app.use("/api/list", listRoutes);
+app.use("/api/resident", residentRoutes);
+
 app.use("/api/users", userRoutes);
 
 const PORT = process.env.PORT || 5000;
