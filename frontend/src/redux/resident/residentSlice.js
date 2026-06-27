@@ -13,10 +13,10 @@ const initialState = {
 // GET ALL EMPLOYEES
 export const fetchResidents = createAsyncThunk(
   "residents/getAll",
-  async (_, thunkAPI) => {
+  async ({ page, limit, search }, thunkAPI) => {
     try {
       console.log("Starting API call  slice");
-      return await residentService.getAllResident();
+      return await residentService.getAllResident({ page, limit, search });
     } catch (error) {
       const message =
         (error.response &&
@@ -76,9 +76,9 @@ export const updateResident = createAsyncThunk(
   "residents/updateResident",
   async ({ id, formData }, thunkAPI) => {
     try {
-      console.log("UPDATE EMPLOYEE IN SLICE")
-      console.log(formData)
-      
+      console.log("UPDATE EMPLOYEE IN SLICE");
+      console.log(formData);
+
       return await residentService.updateResident(id, formData);
     } catch (error) {
       const message =
@@ -97,7 +97,7 @@ const residentSlice = createSlice({
   name: "resident",
   initialState,
   reducers: {
-    SAVE_EMPLOYEE(state, action) {
+    SAVE_RESIDENT(state, action) {
       const profile = action.payload;
       state.resident.title = profile.title;
     },
@@ -116,7 +116,7 @@ const residentSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        console.log(action.payload);
+        console.log("fetchdata fulfilled:", action.payload);
         state.residents = action.payload;
       })
       //  error getting residents case

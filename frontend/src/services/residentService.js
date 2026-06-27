@@ -8,7 +8,7 @@ const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/resident`;
 //----------------------------------------------------
 export const registerResident = async (Data) => {
   try {
-    console.log("SErvices:", Data)
+    console.log("SErvices:", Data);
     const response = await axios.post(
       `${API_URL}/new`,
 
@@ -27,34 +27,28 @@ export const registerResident = async (Data) => {
 
     return response.data;
   } catch (error) {
-      console.log("FULL ERROR:", error);
-      console.log("RESPONSE DATA:", error.response?.data);
+    console.log("FULL ERROR:", error);
+    console.log("RESPONSE DATA:", error.response?.data);
     const message =
       error.response?.data?.message || error.message || error.toString();
 
     toast.error(message);
   }
 };
-
 //----------------------------------------------------
 //    G E T  A L L   R E S I D E N T
 //----------------------------------------------------
-const getAllResident = async (page = 1, limit = 8, search = "") => {
-  // Construct the filter object (matching your backend's JSON.parse(req.query.filter) logic)
-  const filter = search
-    ? JSON.stringify({ status: { $like: `%${search}%` } })
-    : "{}";
+const getAllResident = async ({ page = 1, limit = 15, search = "" }) => {
   const response = await axios.get(API_URL, {
     params: {
       page,
       limit,
-      filter, // Send as a string for JSON.parse on backend
-      sort: JSON.stringify([["ID", "DESC"]]),
+      search,
     },
   });
-  return response;
-};
 
+  return response.data;
+};
 //----------------------------------------------------
 //    G E T  S I N G L E   R E S I D E N T
 //----------------------------------------------------

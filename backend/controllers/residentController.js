@@ -14,44 +14,68 @@ const addResident = asyncHandler(async (req, res) => {
     data: newResident,
   });
 });
-
+const { Op } = require("sequelize");
 //--------------------------------------
-// GET ALL (with pagination & relations)
+// GET ALL RESIDENTS (Pagination + Search)
 //--------------------------------------
 const getAllResident = async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 5000;
+    // Pagination
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 15;
     const offset = (page - 1) * limit;
 
-    const where = req.query.filter ? JSON.parse(req.query.filter) : {};
+    // Search
+    const search = req.query.search?.trim() || "";
 
-    const order = req.query.sort
-      ? JSON.parse(req.query.sort)
-      : [["id", "DESC"]];
+    let where = {};
 
-    const include = resident.associations
-      ? Object.values(resident.associations).map((assoc) => ({
-          association: assoc,
-        }))
-      : [];
+    if (search) {
+      where = {
+        [Op.or]: [
+          {
+            first_name: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+          {
+            father_name: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+          {
+            family_name: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+          {
+            record_no: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+        ],
+      };
+    }
 
     const { count, rows } = await resident.findAndCountAll({
       where,
-      include,
       limit,
       offset,
-      order,
+      order: [["id", "ASC"]],
     });
 
-    res.json({
-      total: count,
-      page,
-      pages: Math.ceil(count / limit),
+    res.status(200).json({
       data: rows,
+      currentPage: page,
+      pageSize: limit,
+      totalItems: count,
+      totalPages: Math.ceil(count / limit),
     });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err);
+    res.status(500).json({
+      message: err.message,
+    });
   }
 };
 
