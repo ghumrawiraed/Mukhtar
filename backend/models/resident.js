@@ -46,7 +46,7 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         comment: "رقم السجل",
       },
-      
+
       record_place: {
         type: DataTypes.TEXT,
         allowNull: true,
@@ -62,83 +62,94 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: true,
         comment: "المحافظة",
       },
-     a_mohafaza: {
+      a_mohafaza: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "محافظة السكن",
       },
-     a_kadaa: {
+      a_kadaa: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "قضاء السكن",
-      }, 
-     a_balda: {
+      },
+      a_balda: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "البلدة|المدينة",
-      },  
-     a_hay: {
+      },
+      a_hay: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "الحي",
-      },  
-    
-     a_street: {
+      },
+
+      a_street: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "الشارع",
-      },    
-    a_buiding: {
+      },
+      a_buiding: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "البناية",
-      },    
-    a_floor: {
+      },
+      a_floor: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "الطابق",
-      },   
-    landline: {
+      },
+      landline: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "هاتف المنزل",
-      },         
-    mobile: {
+      },
+      mobile: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "هاتف خليوي",
-      },  
-    work_phone: {
+      },
+      work_phone: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "هاتف العمل",
-      },      
-    fax: {
+      },
+      fax: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "الفاكس",
-      },          
-    email: {
+      },
+      email: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "البريد الإلكتروني",
-      },      
-   
-    relative_name: {
+      },
+
+      relative_name: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "اسم القريب",
-      },        
-    relation: {
+      },
+      relation: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "صلة القرابه",
-      },   
-    relative_phone: {
+      },
+      relative_phone: {
         type: DataTypes.TEXT,
         allowNull: true,
         comment: "هاتف القريب",
-      },              
+      },
+
+      nationality: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        comment: "الجنسية",
+      },
+      blood_group: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        comment: "فئة الدم",
+      },
     },
     {
       sequelize,

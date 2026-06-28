@@ -1,25 +1,28 @@
 //import Navbar from "../navbar/navbar";
 import { Outlet } from "react-router-dom";
 import heroImg from "../../assets/welcome.jpg";
+import Navbar from "../navbar/navbar";
 
 export default function Layout() {
   return (
-    <div className="relative w-full min-h-screen overflow-x-hidden bg-zinc-950" dir="rtl">
-      {/* Background Image */}
+    <div
+      className="relative w-full min-h-screen overflow-x-hidden bg-zinc-950"
+      dir="rtl"
+    >
+      {/* Background */}
       <img
         src={heroImg}
-        alt="Background"
-        className="absolute inset-0 w-full h-full object-cover object-center z-0"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       />
 
-      {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/40 z-10">
-        {/* <Navbar /> */}
-      </div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/40 z-10" />
 
-      {/* Main Content Area - Locked Center */}
-      <main className="absolute inset-0 z-20 w-full min-h-screen flex items-center justify-center p-4">
-        {/* React Router mounts your Login component here */}
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Page Content */}
+      <main className=" relative z-20 w-full min-h-screen overflow-y-auto p-6">
         <Outlet />
       </main>
     </div>

@@ -53,8 +53,14 @@ const getAllResident = async ({ page = 1, limit = 15, search = "" }) => {
 //    G E T  S I N G L E   R E S I D E N T
 //----------------------------------------------------
 export const getResident = async (id) => {
-  const reponse = await axios.get(API_URL + "/" + id);
-  return reponse.data;
+  console.log("getResident service running");
+  try {
+    const response = await axios.get(API_URL + "/" + id);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data.error; // so you can use it in UI
+  }
 };
 
 //----------------------------------------------------

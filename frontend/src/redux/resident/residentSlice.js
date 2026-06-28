@@ -175,7 +175,7 @@ const residentSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        state.residents = state.residents.filter(
+        state.residents = state.residents.data.filter(
           (resident) => resident.id !== action.payload.id,
         );
         toast.success("Resident Deleted Sucessfully");

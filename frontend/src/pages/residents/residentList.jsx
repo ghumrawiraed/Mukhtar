@@ -95,13 +95,13 @@ const ResidentList = () => {
   };
   console.log("totalPages:", residents.totalPages);
   return (
-    <div className="w-[80%] mx-auto mt-20 p-6">
+    <div className="w-[90%] mx-auto mt-10 p-6 z-0">
       {/* HEADER */}
       <div className="flex items-center gap-4 mb-4">
         <h1 className="text-xl font-bold">لائحة المقيمين</h1>
 
         <Link
-          to="/resident/add"
+          to="/resident/new"
           className="px-4 py-2 bg-red-700 text-white rounded"
         >
           إضافة مقيم
@@ -123,6 +123,7 @@ const ResidentList = () => {
                 <th>الأب</th>
                 <th>العائلة</th>
                 <th>تاريخ الميلاد</th>
+                <th>الجنس</th>
                 <th>إجراءات</th>
               </tr>
             </thead>
@@ -136,12 +137,13 @@ const ResidentList = () => {
                   <td>{resident.father_name}</td>
                   <td>{resident.family_name}</td>
                   <td>
-                    {new Date(resident.birthdate).toLocaleDateString("en-GB")}
+                    {/* {new Date(resident.birthdate).toLocaleDateString("en-GB")} */}
+                    {resident.birthdate}
                   </td>
-
+                  <td>{resident.sex}</td>
                   <td className="flex gap-3">
                     <Link to={`/resident/${resident.ID}`}>
-                      <FaEdit className="text-green-600" />
+                      <FaEdit className="text-green-600 mt-2" />
                     </Link>
 
                     <button onClick={() => confirmDelete(resident.ID)}>

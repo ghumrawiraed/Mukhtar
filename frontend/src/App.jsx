@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegisterUser />} />
-          <Route path="/ifadet-sakan" element={<IfadetSakanList />} />
+          <Route path="/ifadet-sakan/list" element={<IfadetSakanList />} />
           <Route path="/resident/list" element={<ResidentList />} />
           <Route path="/resident/new" element={<AddResident />} />
           <Route path="/resident/:id" element={<EditResident />} />

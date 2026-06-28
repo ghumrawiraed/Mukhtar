@@ -3,16 +3,27 @@ const { resident } = models;
 const asyncHandler = require("express-async-handler");
 
 const addResident = asyncHandler(async (req, res) => {
-  console.log(req.body);
-  const residentData = req.body;
+  try {
+    console.log("Request Body:", req.body);
 
-  // Create Resident
-  const newResident = await resident.create(residentData);
+    const residentData = req.body;
 
-  res.status(201).json({
-    message: "Resident saved",
-    data: newResident,
-  });
+    // Create Resident
+    const newResident = await resident.create(residentData);
+
+    res.status(201).json({
+      success: true,
+      message: "Resident saved successfully.",
+      data: newResident,
+    });
+  } catch (error) {
+    console.error("Error adding resident:", error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message || "Failed to save resident.",
+    });
+  }
 });
 const { Op } = require("sequelize");
 //--------------------------------------
@@ -80,6 +91,7 @@ const getAllResident = async (req, res) => {
 };
 
 const getOneResident = asyncHandler(async (req, res) => {
+  console.log("getOneResident controller running");
   const item = await resident.findByPk(req.params.id);
 
   if (!item) {
@@ -119,10 +131,11 @@ const removeResident = asyncHandler(async (req, res) => {
 });
 
 const updateResident = asyncHandler(async (req, res) => {
-  const { ResidentData } = req.body;
+  const ResidentData = req.body;
   const residentId = req.params.id;
+  console.log(residentId);
 
-  const item = await Resident.findByPk(residentId);
+  const item = await resident.findByPk(residentId);
 
   if (!item) {
     res.status(404);

@@ -1,0 +1,40 @@
+export const formSections = {
+  personal: [
+    { name: "first_name", label: "الأسم", type: "text" },
+    { name: "father_name", label: "اسم الأب", type: "text" },
+    { name: "family_name", label: "الشهرة", type: "text" },
+    { name: "record_no", label: "رقم السجل", type: "number" },
+    { name: "record_place", label: "مكان السجل", type: "text" },
+    { name: "kadaa", label: "قضاء", type: "text" },
+    { name: "mohafaza", label: "محافظة", type: "text" },
+    { name: "mother_name", label: "اسم الام", type: "text" },
+    { name: "birthdate", label: "تاريخ الميلاد", type: "date" },
+    {
+      name: "sex",
+      label: "الجنس",
+      type: "select",
+      options: [
+        { value: "ذكر", label: "ذكر" },
+        { value: "أنثى", label: "أنثى" },
+      ],
+    },
+    { name: "blood_group", label: "فئة الدم", type: "text" },
+    { name: "nationality", label: "الجنسية", type: "text" },
+    { name: "religion", label: "المذهب", type: "text" },
+    { name: "id_no", label: "رقم بطاقة الهوية", type: "number" },
+  ],
+
+  contact: [
+    { name: "a_mohafaza", label: "محافظة", type: "text" },
+    { name: "a_kadaa", label: "قضاء", type: "text" },
+    { name: "a_balda", label: "البلدة", type: "text" },
+    { name: "a_hay", label: "الحي", type: "text" },
+    { name: "a_street", label: "الشارع", type: "text" },
+    { name: "a_building", label: "بناية", type: "text" },
+    { name: "a_floor", label: "طابق", type: "text" },
+    { name: "near", label: "قرب", type: "text" },
+    { name: "phone", label: "هاتف", type: "text" },
+    { name: "mobile", label: "خليوي", type: "text" },
+  ],
+  notes: [{ name: "note", label: "ملاحظات", type: "text" }],
+};
